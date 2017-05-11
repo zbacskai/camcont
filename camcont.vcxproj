@@ -111,7 +111,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="windows\WinCameraManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CameraManager.hpp" />
+    <ClInclude Include="ICamera.hpp" />
+    <ClInclude Include="windows\WinCameraManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
