@@ -6,15 +6,14 @@
 #include <cstring>
 #include <algorithm>
 
-int ccammanager_get_cameras(char **io_buffer, unsigned int buffer_size)
+int ccammanager_get_cameras(char *io_buffer, unsigned int buffer_size)
 {
-	char * buffer = *io_buffer;
 	if (buffer_size < 1)
 		return -1;
 
 	if (buffer_size == 1)
 	{
-		buffer[0] = 0;
+		io_buffer[0] = 0;
 		return 0;
 	}
 	
@@ -34,8 +33,8 @@ int ccammanager_get_cameras(char **io_buffer, unsigned int buffer_size)
 	result_size -= 1;
 
 	result_size = (result_size < buffer_size) ? result_size : buffer_size;
-	std::memcpy(buffer, ss.str().c_str(), result_size);
-	buffer[result_size] = 0;
+	std::memcpy(io_buffer, ss.str().c_str(), result_size);
+	io_buffer[result_size] = 0;
 
 	return result_size;
 }
