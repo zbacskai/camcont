@@ -6,7 +6,7 @@
 
 namespace CamCont {
 
-	class ICamera {
+	class __declspec(dllexport) ICamera {
 	public:
 		typedef std::map <const std::string, std::unique_ptr<ICamera> > Cameras;
 		typedef std::pair<const std::string, std::unique_ptr<ICamera> > CameraMapPair;

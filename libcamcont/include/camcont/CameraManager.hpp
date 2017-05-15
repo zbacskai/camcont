@@ -4,7 +4,7 @@
 
 namespace CamCont {
 
-	class CameraManager {
+	class __declspec(dllexport) CameraManager {
 	public:
 		void getCameras(ICamera::Cameras &ioCameras);
 	};

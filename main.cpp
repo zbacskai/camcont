@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CameraManager.hpp"
+#include <camcont/CameraManager.hpp>
 
 #include <algorithm>
 #include <iostream>

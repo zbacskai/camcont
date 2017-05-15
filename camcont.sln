@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "camcont", "camcont.vcxproj", "{DA5063D5-5AFB-447B-AE89-DFB6BA3860AE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F046058-25E4-469F-BCF9-A028C32CAE69} = {3F046058-25E4-469F-BCF9-A028C32CAE69}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libcamcont", "libcamcont\libcamcont.vcxproj", "{3F046058-25E4-469F-BCF9-A028C32CAE69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +26,14 @@ Global
 		{DA5063D5-5AFB-447B-AE89-DFB6BA3860AE}.Release|x64.Build.0 = Release|x64
 		{DA5063D5-5AFB-447B-AE89-DFB6BA3860AE}.Release|x86.ActiveCfg = Release|Win32
 		{DA5063D5-5AFB-447B-AE89-DFB6BA3860AE}.Release|x86.Build.0 = Release|Win32
+		{3F046058-25E4-469F-BCF9-A028C32CAE69}.Debug|x64.ActiveCfg = Debug|x64
+		{3F046058-25E4-469F-BCF9-A028C32CAE69}.Debug|x64.Build.0 = Debug|x64
+		{3F046058-25E4-469F-BCF9-A028C32CAE69}.Debug|x86.ActiveCfg = Debug|Win32
+		{3F046058-25E4-469F-BCF9-A028C32CAE69}.Debug|x86.Build.0 = Debug|Win32
+		{3F046058-25E4-469F-BCF9-A028C32CAE69}.Release|x64.ActiveCfg = Release|x64
+		{3F046058-25E4-469F-BCF9-A028C32CAE69}.Release|x64.Build.0 = Release|x64
+		{3F046058-25E4-469F-BCF9-A028C32CAE69}.Release|x86.ActiveCfg = Release|Win32
+		{3F046058-25E4-469F-BCF9-A028C32CAE69}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

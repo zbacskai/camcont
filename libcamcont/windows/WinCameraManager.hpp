@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../ICamera.hpp"
+#include "camcont/ICamera.hpp"
 
 namespace WinCamCont {
 

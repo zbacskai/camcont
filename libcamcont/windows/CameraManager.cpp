@@ -1,6 +1,6 @@
-#include "CameraManager.hpp"
+#include <camcont/CameraManager.hpp>
 
-#include "windows/WinCameraManager.hpp"
+#include "WinCameraManager.hpp"
 
 namespace CamCont {
 
