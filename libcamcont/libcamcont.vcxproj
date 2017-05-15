@@ -117,10 +117,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="windows\CameraManager.cpp" />
+    <ClCompile Include="windows\CCameraManegr.cpp" />
     <ClCompile Include="windows\WinCameraManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\camcont\CameraManager.hpp" />
+    <ClInclude Include="include\camcont\CCameraManager.h" />
     <ClInclude Include="include\camcont\ICamera.hpp" />
     <ClInclude Include="windows\WinCameraManager.hpp" />
   </ItemGroup>
