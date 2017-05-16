@@ -6,51 +6,79 @@
 #include <cstring>
 #include <algorithm>
 
-int ccammanager_get_cameras(char *io_buffer, unsigned int buffer_size)
-{
-	if (buffer_size < 1)
-		return -1;
+#include <iostream>
 
-	if (buffer_size == 1)
+void* ccammanger_get_cameras()
+{
+	CamCont::CameraManager camManager;
+	CamCont::ICamera::Cameras *cameras = new CamCont::ICamera::Cameras();
+	camManager.getCameras(*cameras);
+	return cameras;
+}
+
+void ccammanger_dispose_cameras(void* cameras)
+{
+	CamCont::ICamera::Cameras* cmrs = static_cast<CamCont::ICamera::Cameras*>(cameras);
+	delete cmrs;
+}
+
+void* ccammanger_get_camera(void* cameras, const char* cam_name)
+{
+	std::cout << "|" << cam_name << std::endl;
+	CamCont::ICamera::Cameras* cmrs = static_cast<CamCont::ICamera::Cameras*>(cameras);
+	CamCont::ICamera::Cameras::iterator cam_it = cmrs->find(std::string(cam_name));
+	if (cam_it != cmrs->end())
+		return cam_it->second.get();
+
+	return nullptr;
+}
+
+unsigned int ccammanger_get_camera_names(void* cameras, char* cam_names, unsigned int cam_names_size)
+{
+	if (cam_names_size <= 1)
 	{
-		io_buffer[0] = 0;
+		if (cam_names_size == 1)
+			cam_names[0] = 0;
+
 		return 0;
 	}
-	
-	buffer_size -= 1;
 
-	CamCont::CameraManager camManager;
-	CamCont::ICamera::Cameras cameras;
-	camManager.getCameras(cameras);
+	cam_names_size -= 1;
 
+	CamCont::ICamera::Cameras* cmrs = static_cast<CamCont::ICamera::Cameras*>(cameras);
 	std::stringstream ss;
-	std::for_each(cameras.begin(), cameras.end(), [&ss](CamCont::ICamera::CameraMapPair &uPtr) { ss << uPtr.first << ','; });
+	std::for_each(cmrs->begin(), cmrs->end(), [&ss](CamCont::ICamera::CameraMapPair &uPtr) { ss << uPtr.first << ','; });
 
 	unsigned int result_size = ss.str().size();
-	if ( result_size < 1)
-		return -1;
+	if (result_size < 1)
+		return 0;
 
 	result_size -= 1;
 
-	result_size = (result_size < buffer_size) ? result_size : buffer_size;
-	std::memcpy(io_buffer, ss.str().c_str(), result_size);
-	io_buffer[result_size] = 0;
+	result_size = (result_size < cam_names_size) ? result_size : cam_names_size;
+	std::memcpy(cam_names, ss.str().c_str(), result_size);
+	cam_names[result_size] = 0;
 
 	return result_size;
 }
 
-int ccammanger_set_brightness(const char* cameraName, float brightness)
+unsigned int  ccammanger_camera_get_name(void* camera, char* name, unsigned int name_len)
 {
-	CamCont::CameraManager camManager;
-	CamCont::ICamera::Cameras cameras;
-	camManager.getCameras(cameras);
+	CamCont::ICamera* cam = static_cast<CamCont::ICamera*>(camera);
+	const std::string &nm = cam->getName();
 
-	std::string camName(cameraName);
-	if (cameras.find(camName) != cameras.end())
-		cameras[camName]->setBrightness(brightness);
-	else
-		return -1;
+	unsigned int len = (nm.length() + 1 > name_len) ? name_len : nm.length() + 1;
 
-	return 0;
+	std::memcpy(name, nm.c_str(), len);
+
+	name[len] = 0;
+
+	return len;
+}
+
+void ccammanger_camera_set_brightness(void* camera, float brightness)
+{
+	CamCont::ICamera* cam = static_cast<CamCont::ICamera*>(camera);
+	cam->setBrightness(brightness);
 }
 
